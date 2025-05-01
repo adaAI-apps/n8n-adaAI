@@ -42,6 +42,7 @@ module.exports = {
         icon: "fa-solid fa-rocket",
         text: "UI Web",
         href: url,
+        popout: true,
         default: true
       }, {
         icon: "fa-solid fa-terminal",
