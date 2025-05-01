@@ -14,9 +14,9 @@ module.exports = {
   ],
   menu: async (kernel, info) => {
     let installed = info.exists("app/.installed");
-    let running = info.running("start.json");
+    let running = info.running("start.js");
     if (installed && running) {
-      let memory = info.local("start.json");
+      let memory = info.local("start.js");
       return [
         {
           icon: "fa-solid fa-rocket",
@@ -26,22 +26,27 @@ module.exports = {
         {
           icon: "fa-solid fa-terminal",
           text: "Terminal",
-          href: "start.json"
+          href: "start.js"
         },
         {
           icon: "fa-solid fa-stop",
           text: "Stop",
-          href: "stop.json"
+          href: "stop.js"
         },
         {
           icon: "fa-solid fa-rotate",
           text: "Update",
-          href: "update.json"
+          href: "update.js"
+        },
+        {
+          icon: "fa-solid fa-broom",
+          text: "Factory Reset",
+          href: "reset.js"
         },
         {
           icon: "fa-solid fa-plug",
           text: "Reinstall",
-          href: "install.json"
+          href: "install.js"
         }
       ];
     } else if (installed) {
@@ -49,23 +54,28 @@ module.exports = {
         {
           icon: "fa-solid fa-power-off",
           text: "Start",
-          href: "start.json",
+          href: "start.js",
           default: true
         },
         {
           icon: "fa-solid fa-stop",
           text: "Stop",
-          href: "stop.json"
+          href: "stop.js"
         },
         {
           icon: "fa-solid fa-rotate",
           text: "Update",
-          href: "update.json"
+          href: "update.js"
+        },
+        {
+          icon: "fa-solid fa-broom",
+          text: "Factory Reset",
+          href: "reset.js"
         },
         {
           icon: "fa-solid fa-plug",
           text: "Reinstall",
-          href: "install.json"
+          href: "install.js"
         }
       ];
     } else {
@@ -73,7 +83,7 @@ module.exports = {
         {
           icon: "fa-solid fa-plug",
           text: "Install",
-          href: "install.json",
+          href: "install.js",
           default: true
         }
       ];
