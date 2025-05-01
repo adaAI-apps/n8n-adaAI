@@ -20,13 +20,6 @@ module.exports = {
       pid: "{{input.pid}}"
     }
   }, {
-    method: "notify",
-    params: {
-      html: "<b>n8n telah dimulai!</b><br><br>Klik di sini untuk membuka UI Web!",
-      href: "{{input.event[0] || 'http://localhost:' + (env.N8N_PORT || 5678)}}",
-      popout: true
-    }
-  }, {
     method: "process.wait"
   }]
 }
