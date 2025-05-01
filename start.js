@@ -2,7 +2,7 @@ module.exports = {
   run: [{
     method: "shell.run",
     params: {
-      message: "conda activate base && n8n start",
+      message: "n8n start",
       path: "{{path}}/app",
       env: {
         N8N_PORT: "{{env.N8N_PORT || 5678}}",
