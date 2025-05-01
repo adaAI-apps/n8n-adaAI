@@ -1,16 +1,13 @@
 module.exports = {
-  run: [
-    {
-      method: "shell.run",
-      params: {
-        message: "docker stop n8n || true && docker rm n8n || true"
-      }
-    },
-    {
-      method: "notify",
-      params: {
-        html: "<b>n8n has been stopped</b>"
-      }
+  run: [{
+    method: "process.kill",
+    params: {
+      pid: "{{local.pid}}"
     }
-  ]
-};
+  }, {
+    method: "notify",
+    params: {
+      html: "<b>n8n dihentikan!</b>"
+    }
+  }]
+}

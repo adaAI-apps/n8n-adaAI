@@ -1,23 +1,18 @@
 module.exports = {
-  run: [
-    {
-      method: "shell.run",
-      params: {
-        message: "docker stop n8n || true && docker rm n8n || true"
-      }
-    },
-    {
-      method: "shell.run",
-      params: {
-        message: "docker pull docker.n8n.io/n8nio/n8n"
-      }
-    },
-    {
-      method: "notify",
-      params: {
-        html: "<b>n8n has been updated to the latest version</b><br><br>Click here to start n8n!",
-        href: "./start.js"
+  run: [{
+    method: "shell.run",
+    params: {
+      message: "npm install -g n8n@latest",
+      path: "{{path}}/app",
+      env: {
+        N8N_PORT: "{{env.N8N_PORT || 5678}}"
       }
     }
-  ]
-};
+  }, {
+    method: "notify",
+    params: {
+      html: "<b>Pembaruan selesai!</b><br><br>Klik di sini untuk memulai n8n!",
+      href: "./start.js"
+    }
+  }]
+}
