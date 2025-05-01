@@ -37,10 +37,11 @@ module.exports = {
       }]
     } else if (installed && running) {
       let memory = info.local("start.js")
+      let url = memory?.url || `http://localhost:${process.env.N8N_PORT || 5678}`
       return [{
         icon: "fa-solid fa-rocket",
         text: "UI Web",
-        href: memory.url || "http://localhost:{{env.N8N_PORT || 5678}}",
+        href: url,
         default: true
       }, {
         icon: "fa-solid fa-terminal",
