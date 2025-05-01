@@ -1,0 +1,16 @@
+{
+    "run": [
+      {
+        "method": "shell.run",
+        "params": {
+          "message": "docker stop n8n && docker rm n8n"
+        }
+      },
+      {
+        "method": "notify",
+        "params": {
+          "html": "<b>n8n has been stopped</b>"
+        }
+      }
+    ]
+  }

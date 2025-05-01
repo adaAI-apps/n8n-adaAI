@@ -1,79 +1,82 @@
+const path = require("path");
 module.exports = {
-  title: "n8n",
-  description: "A powerful workflow automation tool.",
+  version: "2.0",
+  title: "n8n Workflow Automation",
+  description: "One-click installation for n8n, a fair-code workflow automation platform with 400+ integrations and AI capabilities",
   icon: "icon.png",
-  menu: async (kernel, info) => {
-    let running = {
-      install: info.running("install.js"),
-      start: info.running("start.js"),
-      update: info.running("update.js"),
-      reset: info.running("reset.js"),
-    };
-
-    let url = null;
-    if (running.start) {
-      try {
-        let local = info.local("start.js");
-        if (local && local.url) {
-          url = local.url;
-        }
-      } catch (e) {
-        // ignore
-      }
+  pre: [
+    {
+      icon: "docker.png",
+      title: "Docker",
+      description: "Docker is required to run n8n. Download and install Docker Desktop.",
+      href: "https://www.docker.com/get-started"
     }
-
-    if (running.install) {
+  ],
+  menu: async (kernel, info) => {
+    let installed = info.exists("app/.installed");
+    let running = info.running("start.json");
+    if (installed && running) {
+      let memory = info.local("start.json");
       return [
         {
-          default: true,
-          icon: "fa-solid fa-plug",
-          text: "Installing",
-          href: "install.js",
-        },
-      ];
-    } else if (url) {
-      return [
-        {
-          default: true,
           icon: "fa-solid fa-rocket",
-          text: "Open Web UI",
-          href: url,
+          text: "Web UI",
+          href: memory?.url || "http://localhost:{{env.N8N_PORT}}"
         },
         {
           icon: "fa-solid fa-terminal",
           text: "Terminal",
-          href: "start.js",
+          href: "start.json"
+        },
+        {
+          icon: "fa-solid fa-stop",
+          text: "Stop",
+          href: "stop.json"
+        },
+        {
+          icon: "fa-solid fa-rotate",
+          text: "Update",
+          href: "update.json"
         },
         {
           icon: "fa-solid fa-plug",
-          text: "Update",
-          href: "update.js",
+          text: "Reinstall",
+          href: "install.json"
+        }
+      ];
+    } else if (installed) {
+      return [
+        {
+          icon: "fa-solid fa-power-off",
+          text: "Start",
+          href: "start.json",
+          default: true
         },
         {
-          icon: "fa-regular fa-circle-xmark",
-          text: "Reset",
-          href: "reset.js",
+          icon: "fa-solid fa-stop",
+          text: "Stop",
+          href: "stop.json"
         },
+        {
+          icon: "fa-solid fa-rotate",
+          text: "Update",
+          href: "update.json"
+        },
+        {
+          icon: "fa-solid fa-plug",
+          text: "Reinstall",
+          href: "install.json"
+        }
       ];
     } else {
       return [
         {
-          default: true,
-          icon: "fa-solid fa-power-off",
-          text: "Start",
-          href: "start.js",
-        },
-        {
           icon: "fa-solid fa-plug",
-          text: "Update",
-          href: "update.js",
-        },
-        {
-          icon: "fa-regular fa-circle-xmark",
-          text: "Reset",
-          href: "reset.js",
-        },
+          text: "Install",
+          href: "install.json",
+          default: true
+        }
       ];
     }
-  },
+  }
 };

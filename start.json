@@ -1,0 +1,36 @@
+{
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "docker run -d --name n8n -p {{env.N8N_PORT}}:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n",
+        "on": [
+          {
+            "event": "/n8n ready/",
+            "done": true
+          }
+        ]
+      }
+    },
+    {
+      "method": "process.wait",
+      "params": {
+        "uri": "http://localhost:{{env.N8N_PORT}}",
+        "interval": 1
+      }
+    },
+    {
+      "method": "local.set",
+      "params": {
+        "url": "http://localhost:{{env.N8N_PORT}}"
+      }
+    },
+    {
+      "method": "notify",
+      "params": {
+        "html": "<b>n8n is running</b><br><br>Click here to open the web UI!",
+        "href": "http://localhost:{{env.N8N_PORT}}"
+      }
+    }
+  ]
+}
