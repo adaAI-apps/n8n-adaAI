@@ -2,7 +2,7 @@ module.exports = {
   run: [{
     method: "shell.run",
     params: {
-      message: "n8n start",
+      message: "conda activate base && n8n start",
       path: "{{path}}/app",
       env: {
         N8N_PORT: "{{env.N8N_PORT || 5678}}",
@@ -16,14 +16,14 @@ module.exports = {
   }, {
     method: "local.set",
     params: {
-      url: "{{input.event[0]}}",
+      url: "{{input.event[0] || 'http://localhost:' + (env.N8N_PORT || 5678)}}",
       pid: "{{input.pid}}"
     }
   }, {
     method: "notify",
     params: {
       html: "<b>n8n telah dimulai!</b><br><br>Klik di sini untuk membuka UI Web!",
-      href: "{{input.event[0]}}"
+      href: "{{input.event[0] || 'http://localhost:' + (env.N8N_PORT || 5678)}}"
     }
   }, {
     method: "process.wait"
