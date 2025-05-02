@@ -9,14 +9,9 @@ module.exports = {
     title: "Node.js",
     description: "Node.js 18 or higher is required.",
     href: "https://nodejs.org/en/download/"
-  }, {
-    icon: "conda.png",
-    title: "Conda",
-    description: "Conda is required for managing the environment.",
-    href: "https://docs.conda.io/en/latest/miniconda.html"
   }],
   menu: async (kernel, info) => {
-    let installed = info.exists("app/installed.txt") || info.exists("app/node_modules/n8n")
+    let installed = info.exists("app/installed.txt")
     let running = info.running("start.js")
     if (!installed) {
       return [{

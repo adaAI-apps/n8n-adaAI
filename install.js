@@ -2,7 +2,7 @@ module.exports = {
   run: [{
     method: "shell.run",
     params: {
-      message: "conda install n8n -c conda-forge",
+      message: "npm install -g n8n",
       path: "{{path}}/app",
       env: {
         N8N_PORT: "{{env.N8N_PORT || 5678}}"

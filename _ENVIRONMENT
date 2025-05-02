@@ -1,21 +1,13 @@
 #####################################################################################################################
-
-
-
-N8N_PORT
-
-- Tentukan port untuk server n8n (default: 5678)
-
-- Kosongkan atau hapus bidang ini untuk menggunakan port default
-
-
-
-N8N_RUNNERS_ENABLED
-
-- Atur ke "true" untuk mengaktifkan task runners (direkomendasikan untuk menghindari masalah di masa depan)
-
-- Lihat https://docs.n8n.io/hosting/configuration/task-runners/
-
-
-
-##################################################################################################################### N8N_PORT=5678 N8N_RUNNERS_ENABLED=true
+#
+# N8N_PORT
+# - Tentukan port untuk server n8n (default: 5678)
+# - Kosongkan atau hapus bidang ini untuk menggunakan port default
+#
+# N8N_RUNNERS_ENABLED
+# - Atur ke "true" untuk mengaktifkan task runners (direkomendasikan untuk menghindari masalah di masa depan)
+# - Lihat https://docs.n8n.io/hosting/configuration/task-runners/
+#
+#####################################################################################################################
+N8N_PORT=5678
+N8N_RUNNERS_ENABLED=true
